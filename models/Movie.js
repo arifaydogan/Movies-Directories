@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MovieSchema = new Schema({
-    directory_id : Schema.Types.ObjectId,
+    directory_id :{ type:Schema.Types.ObjectId,ref:'Directory', required: true},
     title:{
        type:String,
        required : true

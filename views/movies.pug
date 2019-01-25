@@ -1,0 +1,31 @@
+extends layout
+
+block stylesheet
+  link(rel='stylesheet', href='/stylesheets/util.css')
+  link(rel='stylesheet', href='/stylesheets/main.css')
+block content
+  .limiter
+    .container-table100
+      .wrap-table100
+        .table100
+          table
+            thead
+              tr.table100-head
+                th Film
+                th Category
+                th Country
+                th Year
+                th IMDB
+                th Director ID
+                th Release Date
+            tbody
+              each movie in movie_list
+                tr
+                  td #{movie.title}
+                  td #{movie.category}
+                  td #{movie.country}
+                  td #{movie.year}
+                  td #{movie.imdb_score}
+                  td #{movie.directory_id}
+                  td #{movie.date}
+

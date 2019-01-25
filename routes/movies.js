@@ -23,7 +23,6 @@ router.post('/', (req, res, next)=> {
    //  });
 
     const movie = new Movie(req.body);
-
     const promise = movie.save();
     promise.then((data)=>{
         res.json(data);
@@ -34,7 +33,13 @@ router.post('/', (req, res, next)=> {
 });
 
 router.get('/', (req,res,next)=>{
-    movie.find()
+    const promise = Movie.find({}).populate('Directory');
+    promise.then((data)=>{
+       //res.json(data);
+       res.render('movies',{'title ':'Film List',movie_list : data});
+    }).catch((err)=>{
+       res.json(err);
+    });
 });
 
 module.exports = router;
