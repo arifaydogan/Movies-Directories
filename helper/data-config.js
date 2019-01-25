@@ -8,5 +8,7 @@ module.exports =()=>{
     mongoose.connection.on('error', (err)=>{
         console.log("MongoDB Connection : Failed -->" + err);
     });
+
+    mongoose.Promise = global.Promise;
 };
 

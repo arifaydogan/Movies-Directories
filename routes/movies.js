@@ -6,22 +6,35 @@ const Movie = require('../models/Movie');
 
 /* Save a movie*/
 router.post('/', (req, res, next)=> {
-    const {title,category,year,country,imdb_scores } = req.body;
+   /* specifc alan almak ya da manüpülasyon yapmak istersen böyle kullanılabilir*/
+   //  const {title,category,year,country,imdb_scores } = req.body;
+   //  const movie =  new Movie({
+   //      title:title,
+   //      category:category,
+   //      year:year,
+   //      country:country,
+   //      imdb_scores:imdb_scores
+   //  });
+   //  movie.save((err,data)=>{
+   //      if(err)
+   //          res.json(err);
+   //
+   //      res.json(data);
+   //  });
 
-    const movie =  new Movie({
-      title:title,
-      category:category,
-      year:year,
-      country:country,
-      imdb_scores:imdb_scores
-    });
+    const movie = new Movie(req.body);
 
-    movie.save((err,data)=>{
-        if(err)
-          res.json(err);
-
+    const promise = movie.save();
+    promise.then((data)=>{
         res.json(data);
+    }).catch((err)=>{
+       res.json(err);
     });
+
+});
+
+router.get('/', (req,res,next)=>{
+    movie.find()
 });
 
 module.exports = router;
