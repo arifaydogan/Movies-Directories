@@ -89,6 +89,23 @@ iframe {
 [ Utiliti ]*/
 
 
+.tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  top: 10px;
+  left: 50%;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltipx:hover .tooltiptext {
+  visibility: visible;
+}
 
 
 
@@ -102,7 +119,7 @@ iframe {
 }
 
 .container-table100 {
-  width: 100%;
+  width: 100% !important;
   min-height: 100vh;
   background: #c850c0;
   background: -webkit-linear-gradient(45deg, #4158d0, #50c8a1);
@@ -126,7 +143,7 @@ iframe {
 }
 
 table {
-  border-spacing: 1;
+  border-spacing: 1px;
   border-collapse: collapse;
   background: white;
   border-radius: 10px;

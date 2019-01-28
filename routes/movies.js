@@ -35,11 +35,21 @@ router.post('/', (req, res, next)=> {
 router.get('/', (req,res,next)=>{
     const promise = Movie.find({}).populate('Directory');
     promise.then((data)=>{
-       //res.json(data);
-       res.render('movies',{'title ':'Film List',movie_list : data});
+      // res.json(data);
+       res.render('movies',{title :'Film List',movie_list : data});
     }).catch((err)=>{
        res.json(err);
     });
+});
+
+router.get('/:movie_id',(req,res) =>{
+   const promise = Movie.findById(req.params.movie_id);
+
+   promise.then((movie)=>{
+        res.json(movie);
+   }).catch((err)=>{
+       res.json(err);
+   });
 });
 
 module.exports = router;
