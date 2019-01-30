@@ -42,14 +42,34 @@ router.get('/', (req,res,next)=>{
     });
 });
 
-router.get('/:movie_id',(req,res) =>{
+router.get('/:movie_id',(req,res,next) =>{
    const promise = Movie.findById(req.params.movie_id);
 
    promise.then((movie)=>{
-        res.json(movie);
+       res.json(movie);
    }).catch((err)=>{
-       res.json(err);
+       next(err);
    });
+});
+
+router.put('/:movie_id',(req,res,next) =>{
+    const promise = Movie.findByIdAndUpdate(req.params.movie_id, req.body,{new : true});
+
+    promise.then((movie)=>{
+        res.json(movie);
+    }).catch((err)=>{
+        next(err);
+    });
+});
+
+router.delete('/:movie_id',(req,res,next) =>{
+    const promise = Movie.findByIdAndDelete(req.params.movie_id, req.body);
+
+    promise.then((movie)=>{
+        res.json(movie);
+    }).catch((err)=>{
+        next(err);
+    });
 });
 
 module.exports = router;

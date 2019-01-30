@@ -7,22 +7,20 @@ block content
   div.container-table100
     div.container
       div.row
-        div.col-md-12
+        .col
           form(action='#', method='post', novalidate='novalidate')
-            .container
               .row
-                .col-md-12
-                    .col-md-3.col-sm-12.p-0.m-1
-                      input.form-control.search-slt(type='text', placeholder='Enter Film Title')
-                    .col-md-3.col-sm-12.p-0.m-1
-                      input.form-control.search-slt(type='text', placeholder='Enter Director Name')
-                    .col-md-3.col-sm-12.p-0.m-1
-                      select#exampleFormControlSelect1.form-control.search-slt
-                        option(selected=true) Select a category
-                        each op in movie_list
-                          option(value=op name=op.category selected=false) #{op.category}
-                    .col-md-3.col-sm-12.p-0.m-1
-                      button.btn.btn-danger.wrn-btn(type='button') Search
+                .col-3.p-0.m-1
+                  input.form-control.search-slt(type='text', placeholder='Enter Film Title')
+                .col-3.p-0.m-1
+                  input.form-control.search-slt(type='text', placeholder='Enter Director Name')
+                .col-3.p-0.m-1
+                  select#exampleFormControlSelect1.form-control.search-slt
+                    option(selected=true) Select a category
+                    each op in movie_list
+                      option(value=op name=op.category selected=false) #{op.category}
+                .col-2.p-0.m-1
+                  button.btn.btn-danger.wrn-btn.w-100(type='button') Search
       div.row
           .wrap-table100
             .table100
@@ -36,6 +34,7 @@ block content
                     th IMDB
                     th Director ID
                     th Release Date
+                    th
                 tbody
                   each movie in movie_list
                     tr
@@ -47,4 +46,7 @@ block content
                       td #{movie.imdb_score}
                       td #{movie.directory_id}
                       td #{movie.date}
+                      td
+                        form(method='POST', action='/app/movies/#{movie.id}?_method=DELETE')
+                          button.btn.btn-danger(type='submit') X
 

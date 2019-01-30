@@ -26,4 +26,14 @@ router.get('/', (req,res,next)=>{
     });
 });
 
+router.get('/:directory_id',(req,res)=>{
+    const promise = Directory.findById(req.params.directory_id);
+
+    promise.then((director) =>{
+        res.json(director);
+    }).catch((err)=>{
+       res.json(err);
+    });
+});
+
 module.exports = router;
