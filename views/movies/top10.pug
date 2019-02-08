@@ -7,54 +7,54 @@ block content
   div.container-table100
     .tabPanel-widget
       label(for='tab-1', tabindex='0')
-      input#tab-1(type='radio', name='tabs', checked='true', aria-hidden='true')
+      input#tab-1(type='radio', name='tabs', aria-hidden='true' onclick='window.location.href="./"')
       h2 Film List
+      div
+      label(for='tab-2', tabindex='0')
+      input#tab-2(type='radio', name='tabs', checked='true', aria-hidden='true')
+      h2 Top 10
       div
         div.container
           div.row
             .col
               form(action='#', method='post', novalidate='novalidate')
-                  .row
-                    .col-3.p-0.m-1
-                      input.form-control.search-slt(type='text', placeholder='Enter Film Title')
-                    .col-3.p-0.m-1
-                      input.form-control.search-slt(type='text', placeholder='Enter Director Name')
-                    .col-3.p-0.m-1
-                      select#exampleFormControlSelect1.form-control.search-slt
-                        option(selected=true) Select a category
-                        each op in movie_list
-                          option(value=op name=op.category selected=false) #{op.category}
-                    .col-2.p-0.m-1
-                      button.btn.btn-danger.wrn-btn.w-100(type='button') Search
+                .row
+                  .col-3.p-0.m-1
+                    input.form-control.search-slt(type='text', placeholder='Enter Film Title')
+                  .col-3.p-0.m-1
+                    input.form-control.search-slt(type='text', placeholder='Enter Director Name')
+                  .col-3.p-0.m-1
+                    select#exampleFormControlSelect1.form-control.search-slt
+                      option(selected=true) Select a category
+                      each op in movie_top10
+                        option(value=op name=op.category selected=false) #{op.category}
+                  .col-2.p-0.m-1
+                    button.btn.btn-danger.wrn-btn.w-100(type='button') Search
           div.row
-              .wrap-table100
-                .table100
-                  table
-                    thead
-                      tr.table100-head
-                        th Film
-                        th Category
-                        th Country
-                        th Year
-                        th IMDB
-                        th Director ID
-                        th Release Date
-                        th
-                    tbody
-                      each movie in movie_list
-                        tr
-                          td.tooltipx #{movie.title}
-                            span.tooltiptext ID:#{movie.id}
-                          td #{movie.category}
-                          td #{movie.country}
-                          td #{movie.year}
-                          td #{movie.imdb_score}
-                          td #{movie.directory_id}
-                          td #{movie.date}
-                          td
-                            form(method='POST', action='/app/movies/#{movie.id}?_method=DELETE')
-                              button.btn.btn-danger(type='submit') X
-      label(for='tab-2', tabindex='0')
-      input#tab-2(type='radio', name='tabs', aria-hidden='true' onclick='window.location.href="./top10"')
-      h2 Top 10
-      div
+            .wrap-table100
+              .table100
+                table
+                  thead
+                    tr.table100-head
+                      th Film
+                      th Category
+                      th Country
+                      th Year
+                      th IMDB
+                      th Director ID
+                      th Release Date
+                      th
+                  tbody
+                    each movie in movie_top10
+                      tr
+                        td.tooltipx #{movie.title}
+                          span.tooltiptext ID:#{movie.id}
+                        td #{movie.category}
+                        td #{movie.country}
+                        td #{movie.year}
+                        td #{movie.imdb_score}
+                        td #{movie.directory_id}
+                        td #{movie.date}
+                        td
+                          form(method='POST', action='/app/movies/#{movie.id}?_method=DELETE')
+                            button.btn.btn-danger(type='submit') X

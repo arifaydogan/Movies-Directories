@@ -36,9 +36,19 @@ router.get('/', (req,res,next)=>{
     const promise = Movie.find({}).populate('Directory');
     promise.then((data)=>{
       // res.json(data);
-       res.render('movies',{title :'Film List',movie_list : data});
+       res.render('movies/movies',{title :'Film List',movie_list : data});
     }).catch((err)=>{
        res.json(err);
+    });
+});
+
+router.get('/top10', (req,res,next)=>{
+    const promise = Movie.find({}).limit(10).sort({imdb_score :-1}).populate('Directory');
+    promise.then((data)=>{
+        // res.json(data);
+        res.render('movies/top10',{title:'Top 10',movie_top10 : data});
+    }).catch((err)=>{
+        res.json(err);
     });
 });
 
